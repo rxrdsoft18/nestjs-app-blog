@@ -39,6 +39,6 @@ export class AuthorResolver {
   @ResolveField()
   async posts(@Parent() author: AuthorType) {
     const { id } = author;
-    // return this.postsService.findAll({ authorId: id });
+    return this.postsService.getPostsByAuthorId({ authorId: id });
   }
 }

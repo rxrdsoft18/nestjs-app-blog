@@ -26,3 +26,9 @@ $ yarn run start:dev
 # production mode
 $ yarn run start:prod
 ```
+
+## Open GraphQL Playground
+
+```bash
+http://localhost:3000/graphql
+```

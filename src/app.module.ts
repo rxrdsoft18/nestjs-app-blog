@@ -5,6 +5,7 @@ import { AuthorModule } from './author/author.module';
 import { PostModule } from './post/post.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Author } from './author/author.entity';
+import { Post } from './post/post.entity';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { Author } from './author/author.entity';
       url: 'mongodb://mongoadmin:secret@localhost:27019/blog?authSource=admin',
       synchronize: true,
       useUnifiedTopology: true,
-      entities: [Author],
+      entities: [Author, Post],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: true,
