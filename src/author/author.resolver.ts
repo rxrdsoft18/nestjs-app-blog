@@ -4,13 +4,14 @@ import {
   Args,
   ResolveField,
   Parent,
-  Mutation,
+  Mutation, Context,
 } from '@nestjs/graphql';
 import { AuthorType } from './author.type';
 import { AuthorService } from './author.service';
 import { PostService } from '../post/post.service';
 import { GetAuthorArgs } from './dtos/args/get-author.args';
 import { CreateAuthorInput } from './dtos/inputs/create-author.input';
+import {PostType} from "../post/post.type";
 
 @Resolver((of) => AuthorType)
 export class AuthorResolver {
@@ -29,14 +30,14 @@ export class AuthorResolver {
     return this.authorsService.findOneById(getAuthorArgs.id);
   }
 
-  @Mutation((returns) => AuthorType)
+  @Mutation(() => AuthorType)
   async createAuthor(
     @Args('createAuthorInput') createAuthorInput: CreateAuthorInput,
   ) {
     return this.authorsService.create(createAuthorInput);
   }
 
-  @ResolveField()
+  @ResolveField((returns) => [PostType])
   async posts(@Parent() author: AuthorType) {
     const { id } = author;
     return this.postsService.getPostsByAuthorId({ authorId: id });

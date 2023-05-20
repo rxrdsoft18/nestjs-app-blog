@@ -11,7 +11,7 @@ import { Post } from './post/post.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: 'mongodb://mongoadmin:secret@localhost:27019/blog?authSource=admin',
+      url: 'mongodb://localhost:27017/blog',
       synchronize: true,
       useUnifiedTopology: true,
       entities: [Author, Post],
